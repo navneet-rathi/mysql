@@ -1,0 +1,14 @@
+---
+- name: ansisble play for demo mysql
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: execute sql query 
+      ansible.builtin.win_shell: 'mysql -u root -pprimod123 -e "show databases"'
+      args:
+        chdir: "C:\Program Files\MySQL\MySQL Server 5.5\bin"
+      register: response
+
+    - name: debug
+      ansible.builtin.debug:
+        msg: "{{ response }}"
