@@ -1,0 +1,13 @@
+---
+- name: ansibleplay role for sftp
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: execute sql query 
+      ansible.builtin.shell: 'sshpass -p "primod1234" sftp -o StrictHostKeyChecking=no root@192.168.1.20:/root/linux.txt /root/linux.txt'
+      register: response
+
+    - name: debug
+      ansible.builtin.debug:
+        msg: "{{ response }}"
+
