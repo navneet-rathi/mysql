@@ -1,0 +1,26 @@
+---
+- name: Find and display contents of .sql files on Windows
+  hosts: windows
+  gather_facts: yes
+  tasks:
+
+    - name: Search for .sql files in a given path
+      win_find:
+        paths: "C:\\Your\\Target\\Path"  
+        patterns: "*.sql"
+        recurse: yes  
+      register: sql_files
+
+    - name: Read and display SQL file contents
+      win_shell: "Get-Content -Path '{{ item.path }}' -Raw"
+      loop: "{{ sql_files.files }}"
+      register: sql_contents
+      when: sql_files.files | length > 0
+
+    - name: Show contents of found .sql files
+      debug:
+        msg: 
+          - "File: {{ item.item.path }}"
+          - "Contents: {{ item.stdout }}"
+      loop: "{{ sql_contents.results }}"
+      when: sql_contents.results is defined
