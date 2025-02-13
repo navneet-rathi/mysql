@@ -16,15 +16,15 @@
       loop: "{{ sql_files.files }}"
       register: sql_contents
       loop_control:
-        label: "{{ item.item.path }}"
+        label: "{{ item.path }}"
       when: sql_files.files | length > 0
 
     - name: Show contents of found .sql files
       debug:
         msg: 
-          - "File: {{ item.item.path }}"
+          - "File: {{ item.path }}"
           - "Contents: {{ item.stdout }}"
       loop: "{{ sql_contents.results }}"
       loop_control:
-        label: "{{ item.item.path }}"
+        label: "{{ item.path }}"
       when: sql_contents.results is defined
