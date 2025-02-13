@@ -12,7 +12,7 @@
       register: sql_files
 
     - name: Get stats of the FS object
-      ansible.builtin.stat:
+      ansible.windows.win_stat:
         path: "{{ item.path }}"
       register: sym
       loop: "{{ sql_files.files }}"
