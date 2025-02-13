@@ -11,13 +11,13 @@
         recurse: yes  
       register: sql_files
 
-    - name: Get stats of the FS object
-      ansible.windows.win_stat:
-        path: "{{ item.path }}"
-      register: sym
+    - name: Read and display SQL file contents
+      win_shell: "file --mime-encoding '{{ item.path }}'"
       loop: "{{ sql_files.files }}"
+      register: sql_contents
       loop_control:
         label: "{{ item.path }}"
+      when: sql_files.files | length > 0
   
     - name: Read and display SQL file contents
       win_shell: "Get-Content -Path '{{ item.path }}' -Raw"
