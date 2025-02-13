@@ -22,7 +22,7 @@
     - name: Show contents of found .sql files
       debug:
         msg: 
-          - "File: {{ item.path }}"
+          - "File: {{ item.item.path }}"
           - "Contents: {{ item.stdout }}"
       loop: "{{ sql_contents.results }}"
       loop_control:
