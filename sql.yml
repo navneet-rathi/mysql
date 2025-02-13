@@ -26,5 +26,5 @@
           - "Contents: {{ item.stdout }}"
       loop: "{{ sql_contents.results }}"
       loop_control:
-        label: "{{ item.path }}"
+        label: "{{ item.item.path }}"
       when: sql_contents.results is defined
