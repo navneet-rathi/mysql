@@ -6,7 +6,7 @@
 
     - name: Search for .sql files in a given path
       win_find:
-        paths: "C:\\User\\nrathi\\Desktop\\nrathi"  
+        paths: "C:\\Users\\nrathi\\Desktop\\nrathi"  
         patterns: "*.sql"
         recurse: yes  
       register: sql_files
