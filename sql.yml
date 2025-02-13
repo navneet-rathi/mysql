@@ -11,7 +11,7 @@
         recurse: yes  
       register: sql_files
 
-    - name: Read and display SQL file contents
+    - name: Get File encoding
       win_shell: "file --mime-encoding '{{ item.path }}'"
       loop: "{{ sql_files.files }}"
       register: sql_contents
