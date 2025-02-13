@@ -11,6 +11,14 @@
         recurse: yes  
       register: sql_files
 
+    - name: Get stats of the FS object
+      ansible.builtin.stat:
+        path: "{{ item.path }}"
+      register: sym
+      loop: "{{ sql_files.files }}"
+      loop_control:
+        label: "{{ item.path }}"
+  
     - name: Read and display SQL file contents
       win_shell: "Get-Content -Path '{{ item.path }}' -Raw"
       loop: "{{ sql_files.files }}"
