@@ -1,7 +1,7 @@
 ---
 - name: Find and display contents of .sql files on Windows
   hosts: windows
-  gather_facts: yes
+  gather_facts: false
   tasks:
 
     - name: Search for .sql files in a given path
