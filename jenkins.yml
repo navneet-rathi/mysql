@@ -19,7 +19,7 @@
         user: "admin"
         token: "11977f02c5c2c6b52a795c03d365fc485c"
         name: "Sample"
-        state: "build"
+  #      state: "build"
       register: result  
 
     - name: Show Jenkins response
