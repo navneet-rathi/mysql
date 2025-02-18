@@ -24,7 +24,7 @@
 
     - name: Show Jenkins response
       debug:
-        var: result
+        var: result.number
 
     - name: Get information about a jenkins build using basic authentication
       community.general.jenkins_build_info:
