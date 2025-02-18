@@ -4,7 +4,7 @@
   tasks:
     - name: Invoke Jenkins job
       uri:
-        url: "http://192.168.1.7/job/Sample/build?token=aT0k3n_N@M3"
+        url: "http://192.168.1.7:8080/job/Sample/build?token=aT0k3n_N@M3"
         method: POST
         user: "admin"  # Change to your Jenkins username
         password: "primod123"
