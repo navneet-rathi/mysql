@@ -14,12 +14,12 @@
    #   register: result
 
     - name: Trigger Jenkins job
-      community.general.jenkins_job:
+      community.general.jenkins_build:
         url: "http://192.168.1.7:8080"
         user: "admin"
         token: "11977f02c5c2c6b52a795c03d365fc485c"
         name: "Sample"
-  #      state: "build"
+        state: "present"
       register: result  
 
     - name: Show Jenkins response
