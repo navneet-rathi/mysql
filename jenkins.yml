@@ -24,4 +24,4 @@
 
     - name: Show Jenkins response
       debug:
-        var: result.json
+        var: result
