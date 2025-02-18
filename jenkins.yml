@@ -1,0 +1,18 @@
+---
+- name: Trigger a Jenkins Job from Ansible
+  hosts: localhost
+  tasks:
+    - name: Invoke Jenkins job
+      uri:
+        url: "http://192.168.1.7/job/Sample/build?token=aT0k3n_N@M3"
+        method: POST
+        user: "admin"  # Change to your Jenkins username
+        password: "primod123"
+        force_basic_auth: yes
+        status_code: [201, 200, 302]
+        timeout: 30
+      register: result
+
+    - name: Show Jenkins response
+      debug:
+        var: result.json
