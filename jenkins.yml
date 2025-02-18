@@ -6,9 +6,9 @@
       uri:
         url: "http://192.168.1.7:8080/job/Sample/build?token=aT0k3n_N@M3"
         method: POST
-        user: "admin"  
-        password: "primod123"
-        force_basic_auth: yes
+       # user: "admin"  
+       # password: "primod123"
+       # force_basic_auth: yes
         status_code: [201, 200, 302]
         timeout: 30
       register: result
