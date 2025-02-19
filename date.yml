@@ -18,4 +18,4 @@
 
     - name: Get yesterday's date using timestamp subtraction
       set_fact:
-        yesterday_date: "{{ (now().timestamp() - 86400)| str | to_datetime('%Y-%m-%d') }}"
+        yesterday_date: "{{ '%Y-%m-%d'|strftime(ansible_date_time.epoch|int - 86400) }}"
