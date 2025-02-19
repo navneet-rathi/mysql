@@ -1,0 +1,35 @@
+---
+- name: Get yesterday's date with underscores
+  hosts: localhost
+  tasks:
+    - name: Format yesterday's date with _
+      debug:
+        msg: "{{ (now() - timedelta(days=1)).strftime('%Y_%m_%d') }}"
+
+    - name: Format yesterday's date with -
+      debug:
+        msg: "{{ (now() - timedelta(days=1)).strftime('%Y_%m_%d') }}"
+
+    - name: Show today's date with full month name
+      debug:
+        msg: "{{ (now()- timedelta(days=1)).strftime('%d_%B_%Y') }}"
+
+    - name: Show yesterday's date with abbreviated month
+      debug:
+        msg: "{{ (now() - timedelta(days=1)).strftime('%d_%b_%Y') }}"        
+
+    - name: Show today's date with full month name
+      debug:
+        msg: "{{ (now()- timedelta(days=1)).strftime('%d-%B-%Y') }}"
+
+    - name: Show yesterday's date with abbreviated month
+      debug:
+        msg: "{{ (now() - timedelta(days=1)).strftime('%d-%b-%Y') }}"
+
+    - name: Show today's date with full month name
+      debug:
+        msg: "{{ (now()- timedelta(days=1)).strftime('%d %B %Y') }}"
+
+    - name: Show yesterday's date with abbreviated month
+      debug:
+        msg: "{{ (now() - timedelta(days=1)).strftime('%d %b %Y') }}"                
