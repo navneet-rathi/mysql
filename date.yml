@@ -3,9 +3,9 @@
   hosts: all
   gather_facts: true
   tasks:
-    - name: Set the current date
+    - name: Get current hour
       set_fact:
-        current_date: "{{ ansible_date_time.iso8601 }}"
+        current_hour: "{{ now().strftime('%H') | int }}"
 
     - name: Format the date
       set_fact:
@@ -14,5 +14,8 @@
 
     - name: Display the formatted date
       debug:
-        msg: "Formatted date is {{ currentdate }}"    
+        msg: "Formatted date is {{ currentdate }}"
 
+    - name: Get yesterday's date
+      set_fact:
+        yesterday_date: "{{ (ansible_date_time.epoch | int - 86400) | strftime('%Y-%m-%d') }}"
