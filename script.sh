@@ -69,12 +69,14 @@ while true; do
                 read -p "Select an option [1-4]: " net_choice
 
                 case $net_choice in
-                    1) ip a ;;
-                    2) ping -c 4 8.8.8.8 ;;
+                    1) ip a 
+                       break ;;
+                    2) ping -c 4 8.8.8.8 
+                       break ;;
                     3) 
                        read -p "Enter host to ping: " host
                        ping -c 4 "$host"
-                       ;;
+                       break ;;
                     4) break ;;
                     *) echo "Invalid option, try again!" ;;
                 esac
