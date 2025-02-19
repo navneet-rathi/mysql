@@ -49,4 +49,18 @@
 
     - name: display the debug output
       ansible.builtin.debug:
-        msg: "{{ output.stdout_lines }}"                    
+        msg: "{{ output.stdout_lines }}" 
+
+    - name: check the file listing from current directory
+      ansible.builtin.shell: /tmp/myscript.sh
+      args:
+        stdin_add_newline: false
+        stdin: |
+          2
+          1
+          4
+      register: output
+
+    - name: display the debug output
+      ansible.builtin.debug:
+        msg: "{{ output.stdout_lines }}"                             
