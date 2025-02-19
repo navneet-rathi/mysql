@@ -28,8 +28,8 @@
     - name: Get yesterday's date using timestamp subtraction
       set_fact:
  #       yesterday_date: "{{ '%Y-%m-%d'|strftime(ansible_date_time.epoch|int - 86400) }}"
-         yesterday_date_: yesterday_.stdout
-         yesterday_date_hypen: yesterday_hypen.stdout
+         yesterday_date_: "{{ yesterday_.stdout }}"
+         yesterday_date_hypen: "{{ yesterday_hypen.stdout }}"
     - name: Determine the correct date
       set_fact:
         selected_date: "{{ currentdate_ if current_hour|int >= 20 else yesterday_date_ }}"
