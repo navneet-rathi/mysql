@@ -13,13 +13,13 @@
       set_fact:
         current_hour: "{{ now().strftime('%H') | int }}"
 
-    - name: Get yesterday's date using Jinja2
-      set_fact:
-        yesterday_date: "{{ (now() | to_datetime | datetime.timedelta(days=-1)).strftime('%Y-%m-%d') }}"
-
     - name: Get today's date
       set_fact:
         today_date: "{{ now().strftime('%Y-%m-%d') }}"
+
+    - name: Get yesterday's date using timestamp subtraction
+      set_fact:
+        yesterday_date: "{{ (now().timestamp() - 86400) | to_datetime('%Y-%m-%d') }}"
 
     - name: Determine the correct date
       set_fact:
@@ -27,7 +27,7 @@
 
     - name: Display the selected date
       debug:
-        msg: "Selected Date: {{ selected_date }}"        
+        msg: "Selected Date: {{ selected_date }}"  
    # - name: Determine date based on time
   #    set_fact:
   #      selected_date: >-
