@@ -9,26 +9,30 @@
 
     - name: Format the date
       set_fact:
-        currentdate: "{{ '%Y-%m-%d' | strftime(ansible_date_time.epoch) }}"
+        currentdate_: "{{ '%Y-%m-%d' | strftime(ansible_date_time.epoch) }}"
+        currentdate_hypen: "{{ '%Y-%m-%d' | strftime(ansible_date_time.epoch) }}"
         #formatted_date: "{{ current_date | strftime('%Y-%m-%d') }}"
 
     - name: Display the formatted date
       debug:
-        msg: "Formatted date is {{ currentdate }}"
+        msg: "Formatted date is {{ currentdate_ }}"
  
     - name: get yesterdays date
-      ansible.builtin.shell: "date -d 'yesterday 13:00' '+%Y-%m-%d'"
-      register: yesterday
+      ansible.builtin.shell: "date -d 'yesterday 13:00' '+%Y_%m_%d'"
+      register: yesterday_
 
+    - name: get yesterdays date hypen
+      ansible.builtin.shell: "date -d 'yesterday 13:00' '+%Y-%m-%d'"
+      register: yesterday_hypen
 
     - name: Get yesterday's date using timestamp subtraction
       set_fact:
  #       yesterday_date: "{{ '%Y-%m-%d'|strftime(ansible_date_time.epoch|int - 86400) }}"
-         yesterday_date: yesterday.stdout
+         yesterday_date_hypen: yesterday_.stdout
     - name: Determine the correct date
       set_fact:
-        selected_date: "{{ currentdate if current_hour|int >= 20 else yesterday_date }}"
-
+        selected_date: "{{ currentdate_ if current_hour|int >= 20 else yesterday_ }}"
+        selectdate_date_hypen:  "{{ currentdate_hypen if current_hour|int >= 20 else yesterday_hypen }}"
     - name: Display the selected date
       debug:
-        msg: "Selected Date: {{ selected_date }}"
+        msg: "Selected Date in _: {{ selected_date }}. Selected date in hypen {{ selectdate_date_hypen }}" 
