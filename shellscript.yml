@@ -18,3 +18,9 @@
           1
           4
           4
+      register: output
+
+    - name: display the debug output
+      ansible.builtin.debug:
+        msg: "{{ output.stdout_lines }}"
+                
