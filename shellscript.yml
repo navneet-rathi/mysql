@@ -23,4 +23,19 @@
     - name: display the debug output
       ansible.builtin.debug:
         msg: "{{ output.stdout_lines }}"
+
+    - name: check internet connection
+      ansible.builtin.shell: /tmp/myscript.sh
+      args:
+        stdin_add_newline: false
+        stdin: |
+          3
+          2
+          4
+          4
+      register: output
+
+    - name: display the debug output
+      ansible.builtin.debug:
+        msg: "{{ output.stdout_lines }}"        
                 
