@@ -19,3 +19,11 @@
     - name: Get yesterday's date using timestamp subtraction
       set_fact:
         yesterday_date: "{{ '%Y-%m-%d'|strftime(ansible_date_time.epoch|int - 86400) }}"
+
+    - name: Determine the correct date
+      set_fact:
+        selected_date: "{{ currentdate if current_hour >= 20 else yesterday_date }}"
+
+    - name: Display the selected date
+      debug:
+        msg: "Selected Date: {{ selected_date }}"
