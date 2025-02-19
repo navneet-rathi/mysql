@@ -9,9 +9,10 @@
 
     - name: Format the date
       set_fact:
-        formatted_date: "{{ current_date | strftime('%Y-%m-%d') }}"
+        currentdate: "{{ '%Y-%m-%d' | strftime }}"
+        #formatted_date: "{{ current_date | strftime('%Y-%m-%d') }}"
 
     - name: Display the formatted date
       debug:
-        msg: "Formatted date is {{ formatted_date }}"    
+        msg: "Formatted date is {{ currentdate }}"    
 
