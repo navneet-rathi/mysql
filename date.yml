@@ -9,7 +9,7 @@
 
     - name: Format the date
       set_fact:
-        currentdate: "{{ '%Y-%m-%d' | strftime }}"
+        currentdate: "{{ '%Y-%m-%d' | strftime(ansible_date_time.iso8601) }}"
         #formatted_date: "{{ current_date | strftime('%Y-%m-%d') }}"
 
     - name: Display the formatted date
