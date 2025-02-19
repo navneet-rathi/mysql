@@ -8,11 +8,11 @@
 
     - name: Set yesterday's date using Ansible date module
       ansible.builtin.set_fact:
-        yesterday_date: "{{ lookup('ansible.builtin.date', 'now -1d', '%Y-%m-%d') }}"
+        yesterday_date: "{{ lookup('ansible.builtin.to_datetime', 'now -1d', '%Y-%m-%d') }}"
 
     - name: Set today's date using Ansible date module
       ansible.builtin.set_fact:
-        today_date: "{{ lookup('ansible.builtin.date', 'now', '%Y-%m-%d') }}"
+        today_date: "{{ lookup('ansible.builtin.to_datetime', 'now', '%Y-%m-%d') }}"
 
     - name: Determine the correct date
       ansible.builtin.set_fact:
