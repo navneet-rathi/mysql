@@ -16,7 +16,10 @@
     - name: Get today's date
       set_fact:
         today_date: "{{ now().strftime('%Y-%m-%d') }}"
-
+    - name: Get timestamp from the system
+      shell: “date --date=‘1 days ago’” 
+      register: tstamp
+ 
     - name: Get yesterday's date using timestamp subtraction
       set_fact:
         yesterday_date: "{{ (now().timestamp() - 86400) | to_datetime('%Y-%m-%d') }}"
