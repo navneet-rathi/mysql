@@ -13,19 +13,17 @@
       set_fact:
         current_hour: "{{ now().strftime('%H') | int }}"
 
-
-
     - name: Set the current date
       set_fact:
         current_date: "{{ ansible_date_time.iso8601 }}"
 
-    - name: Format the date
-      set_fact:
-        formatted_date: "{{ current_date | strftime('%Y-%m-%d') }}"
+   # - name: Format the date
+   #   set_fact:
+   #     formatted_date: "{{ current_date | strftime('%Y-%m-%d') }}"
 
-    - name: Display the formatted date
-      debug:
-        msg: "Formatted date is {{ formatted_date }}"        
+   # - name: Display the formatted date
+   #   debug:
+   #     msg: "Formatted date is {{ formatted_date }}"        
 
     - name: Calculate yesterday's date
       set_fact:
