@@ -13,33 +13,32 @@
       set_fact:
         current_hour: "{{ now().strftime('%H') | int }}"
 
-    - name: Get today's date
-      set_fact:
-        today_date: "{{ now().strftime('%Y-%m-%d') }}"
-    - name: Get timestamp from the system
-      shell: “date --date=‘1 days ago’” 
-      register: tstamp
- 
-    - name: Get yesterday's date using timestamp subtraction
-      set_fact:
-        yesterday_date: "{{ (now().timestamp() - 86400) | to_datetime('%Y-%m-%d') }}"
 
-    - name: Determine the correct date
-      set_fact:
-        selected_date: "{{ today_date if current_hour >= 20 else yesterday_date }}"
 
-    - name: Display the selected date
+    - name: Set the current date
+      set_fact:
+        current_date: "{{ ansible_date_time.iso8601 }}"
+
+    - name: Format the date
+      set_fact:
+        formatted_date: "{{ current_date | strftime('%Y-%m-%d') }}"
+
+    - name: Display the formatted date
       debug:
-        msg: "Selected Date: {{ selected_date }}"  
-   # - name: Determine date based on time
-  #    set_fact:
-  #      selected_date: >-
-   #       {% if current_hour >= 20 %}
-  #        {{ now().strftime('%Y-%m-%d') }}
-  #        {% else %}
-  #        {{ (now() - timedelta(days=1)).strftime('%Y-%m-%d') }}
-  #        {% endif %}
+        msg: "Formatted date is {{ formatted_date }}"        
 
- #   - name: Display the selected date
-  #    debug:
-   #     msg: "Selected Date: {{ selected_date }}"
+    - name: Calculate yesterday's date
+      set_fact:
+        yesterdays_date: "{{ (current_date | to_datetime | timedelta(days=-1)) | strftime('%Y-%m-%d') }}"
+
+    - name: Display yesterday's date
+      debug:
+        msg: "Yesterday's date was {{ yesterdays_date }}"
+
+    - name: Format the date
+      set_fact:
+        formatted_month_date: "{{ current_date | to_datetime | strftime('%-d-%b-%Y') }}"
+
+    - name: Display the formatted date
+      debug:
+        msg: "Formatted date is {{ formatted_month_date }}" 
