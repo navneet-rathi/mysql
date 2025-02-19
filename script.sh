@@ -23,9 +23,12 @@ while true; do
                 read -p "Select an option [1-4]: " sys_choice
 
                 case $sys_choice in
-                    1) uptime ;;
-                    2) df -h ;;
-                    3) ps aux --sort=-%mem | head ;;
+                    1) uptime 
+                       break ;;
+                    2) df -h 
+                       break ;;
+                    3) ps aux --sort=-%mem | head 
+                       break ;;
                     4) break ;;
                     *) echo "Invalid option, try again!" ;;
                 esac
@@ -42,17 +45,18 @@ while true; do
                 read -p "Select an option [1-4]: " file_choice
 
                 case $file_choice in
-                    1) ls -lah ;;
+                    1) ls -lah 
+                       break ;;
                     2) 
                        read -p "Enter filename to create: " filename
                        touch "$filename"
                        echo "File '$filename' created."
-                       ;;
+                       break ;;
                     3) 
                         read -p "Enter filename to delete: " del_file
                         rm -i "$del_file"
                         echo "File '$del_file' deleted."
-                        ;;
+                        break ;;
                     4) break ;;
                     *) echo "Invalid option, try again!" ;;
                 esac
