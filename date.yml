@@ -3,40 +3,21 @@
   hosts: all
   gather_facts: true
   tasks:
-    - debug: 
-        msg: "{{ ansible_date_time }}"
-
-    - debug: 
-        msg: "the current date is {{ ansible_date_time.date }}"
-
-    - name: Get current hour
+    - name: Get today's date
       set_fact:
-        current_hour: "{{ now().strftime('%H') | int }}"
+        today_date: "{{ lookup('ansible.builtin.date', 'now', '%Y-%m-%d') }}"
 
-    - name: Set the current date
+    - name: Get yesterday's date
       set_fact:
-        current_date: "{{ ansible_date_time.iso8601 }}"
+        yesterday_date: "{{ lookup('ansible.builtin.date', 'now -1d', '%Y-%m-%d') }}"
 
-   # - name: Format the date
-   #   set_fact:
-   #     formatted_date: "{{ current_date | strftime('%Y-%m-%d') }}"
-
-   # - name: Display the formatted date
-   #   debug:
-   #     msg: "Formatted date is {{ formatted_date }}"        
-
-    - name: Calculate yesterday's date
+    - name: Get tomorrow's date
       set_fact:
-        yesterdays_date: "{{ (current_date | to_datetime | timedelta(days=-1)) | strftime('%Y-%m-%d') }}"
+        tomorrow_date: "{{ lookup('ansible.builtin.date', 'now +1d', '%Y-%m-%d') }}"
 
-    - name: Display yesterday's date
+    - name: Display the results
       debug:
-        msg: "Yesterday's date was {{ yesterdays_date }}"
-
-    - name: Format the date
-      set_fact:
-        formatted_month_date: "{{ current_date | to_datetime | strftime('%-d-%b-%Y') }}"
-
-    - name: Display the formatted date
-      debug:
-        msg: "Formatted date is {{ formatted_month_date }}" 
+        msg:
+          - "Today's Date: {{ today_date }}"
+          - "Yesterday's Date: {{ yesterday_date }}"
+          - "Tomorrow's Date: {{ tomorrow_date }}"
