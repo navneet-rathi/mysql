@@ -4,7 +4,7 @@
   gather_facts: true
   tasks:
     - debug: 
-        msg: {{ ansible_date_time }}
+        msg: "{{ ansible_date_time }}"
 
     - debug: 
         msg: "the current date is {{ ansible_date_time.date }}"
