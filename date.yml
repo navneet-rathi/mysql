@@ -1,6 +1,6 @@
 ---
 - name: Get yesterday's date with underscores
-  hosts: localhost
+  hosts: all
   tasks:
     - debug:
         msg: "{{ '%Y-%m-%d'|strftime(ansible_date_time.epoch|int - 86400) }}"
