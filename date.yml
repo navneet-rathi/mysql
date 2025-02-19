@@ -3,7 +3,7 @@
   hosts: localhost
   tasks:
     - debug:
-      msg: "{{ '%Y-%m-%d'|strftime(ansible_date_time.epoch|int - 86400) }}"
+        msg: "{{ '%Y-%m-%d'|strftime(ansible_date_time.epoch|int - 86400) }}"
 
     - name: Format yesterday's date with _
       debug:
