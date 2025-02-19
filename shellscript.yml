@@ -14,4 +14,6 @@
       args:
         stdin_add_newline: false
         stdin: |
+          3
+          4
           4
