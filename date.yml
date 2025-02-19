@@ -32,4 +32,21 @@
 
     - name: Show yesterday's date with abbreviated month
       debug:
-        msg: "{{ (now() - timedelta(days=1)).strftime('%d %b %Y') }}"                
+        msg: "{{ (now() - timedelta(days=1)).strftime('%d %b %Y') }}" 
+
+    - name: Get current hour
+      set_fact:
+        current_hour: "{{ now().strftime('%H') | int }}"
+
+    - name: Determine date based on time
+      set_fact:
+        selected_date: >-
+          {% if current_hour >= 20 %}
+          {{ now().strftime('%Y-%m-%d') }}
+          {% else %}
+          {{ (now() - timedelta(days=1)).strftime('%Y-%m-%d') }}
+          {% endif %}
+
+    - name: Display the selected date
+      debug:
+        msg: "Selected Date: {{ selected_date }}"
