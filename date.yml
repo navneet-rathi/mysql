@@ -22,7 +22,7 @@
 
     - name: Determine the correct date
       set_fact:
-        selected_date: "{{ currentdate if current_hour >= 20 else yesterday_date }}"
+        selected_date: "{{ currentdate if current_hour|int >= 20 else yesterday_date }}"
 
     - name: Display the selected date
       debug:
