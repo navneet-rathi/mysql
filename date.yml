@@ -2,26 +2,31 @@
 - name: Get yesterday's date with underscores
   hosts: all
   tasks:
+    - debug: 
+        msg: {{ ansible_date_time }}
+
+    - debug: 
+        msg: "the current date is {{ ansible_date_time.date }}"
+
     - name: Get current hour
       set_fact:
         current_hour: "{{ now().strftime('%H') | int }}"
+        
+    - name: Get yesterday's date using Jinja2
+      set_fact:
+        yesterday_date: "{{ (now() | to_datetime | datetime.timedelta(days=-1)).strftime('%Y-%m-%d') }}"
 
-    - name: Set yesterday's date using Ansible date module
-      ansible.builtin.set_fact:
-        yesterday_date: "{{ lookup('ansible.builtin.to_datetime', 'now -1d', '%Y-%m-%d') }}"
-
-    - name: Set today's date using Ansible date module
-      ansible.builtin.set_fact:
-        today_date: "{{ lookup('ansible.builtin.to_datetime', 'now', '%Y-%m-%d') }}"
+    - name: Get today's date
+      set_fact:
+        today_date: "{{ now().strftime('%Y-%m-%d') }}"
 
     - name: Determine the correct date
-      ansible.builtin.set_fact:
+      set_fact:
         selected_date: "{{ today_date if current_hour >= 20 else yesterday_date }}"
 
     - name: Display the selected date
       debug:
-        msg: "Selected Date: {{ selected_date }}"
-
+        msg: "Selected Date: {{ selected_date }}"        
    # - name: Determine date based on time
   #    set_fact:
   #      selected_date: >-
