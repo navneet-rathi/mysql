@@ -16,6 +16,6 @@
       debug:
         msg: "Formatted date is {{ currentdate }}"
 
-    - name: Get yesterday's date
+    - name: Get yesterday's date using timestamp subtraction
       set_fact:
-        yesterday_date: "{{ (ansible_date_time.epoch | int - 86400) | strftime('%Y-%m-%d') }}"
+        yesterday_date: "{{ (now().timestamp() - 86400) | to_datetime('%Y-%m-%d') }}"
