@@ -5,7 +5,7 @@
   tasks:
     - name: Get current hour
       set_fact:
-        current_hour: "{{ now().strftime('%H') | int }}"
+        current_hour: "{{ ansible_date_time.hour | int }}"
 
     - name: Format the date
       set_fact:
