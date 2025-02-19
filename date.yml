@@ -3,21 +3,15 @@
   hosts: all
   gather_facts: true
   tasks:
-    - name: Get today's date
+    - name: Set the current date
       set_fact:
-        today_date: "{{ lookup('ansible.builtin.date', 'now', '%Y-%m-%d') }}"
+        current_date: "{{ ansible_date_time.iso8601 }}"
 
-    - name: Get yesterday's date
+    - name: Format the date
       set_fact:
-        yesterday_date: "{{ lookup('ansible.builtin.date', 'now -1d', '%Y-%m-%d') }}"
+        formatted_date: "{{ current_date | strftime('%Y-%m-%d') }}"
 
-    - name: Get tomorrow's date
-      set_fact:
-        tomorrow_date: "{{ lookup('ansible.builtin.date', 'now +1d', '%Y-%m-%d') }}"
-
-    - name: Display the results
+    - name: Display the formatted date
       debug:
-        msg:
-          - "Today's Date: {{ today_date }}"
-          - "Yesterday's Date: {{ yesterday_date }}"
-          - "Tomorrow's Date: {{ tomorrow_date }}"
+        msg: "Formatted date is {{ formatted_date }}"    
+
