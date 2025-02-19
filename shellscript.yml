@@ -11,7 +11,7 @@
 
     - name: Execute and check internet connection
       ansible.builtin.shell: /tmp/myscript.sh
-      stdin_add_newline: false
       args:
+        stdin_add_newline: false
         stdin: |
           3
