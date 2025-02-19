@@ -1,6 +1,7 @@
 ---
 - name: Get yesterday's date with underscores
   hosts: all
+  gather_facts: true
   tasks:
     - debug: 
         msg: {{ ansible_date_time }}
@@ -11,7 +12,7 @@
     - name: Get current hour
       set_fact:
         current_hour: "{{ now().strftime('%H') | int }}"
-        
+
     - name: Get yesterday's date using Jinja2
       set_fact:
         yesterday_date: "{{ (now() | to_datetime | datetime.timedelta(days=-1)).strftime('%Y-%m-%d') }}"
