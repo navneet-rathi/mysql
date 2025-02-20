@@ -1,0 +1,15 @@
+---
+- name: Find JSON, XML, and CSV files in a directory
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Find files with specific extensions
+      find:
+        paths: "/home/navneet/"  # Change this to your target directory
+        patterns: "*.json,*.xml,*.csv"
+        recurse: yes  
+      register: found_files
+
+    - name: Display found files
+      debug:
+        msg: "{{ found_files.files | map(attribute='path') | list }}"
