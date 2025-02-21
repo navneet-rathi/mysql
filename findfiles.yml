@@ -17,4 +17,4 @@
 
     - name: Display found files
       debug:
-        msg: "{{ found_files.files | map(attribute='path') | list }}"
+        msg: "{{ found_files.files | map(attribute='path') | list |length }}"
