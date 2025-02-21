@@ -8,13 +8,16 @@
         paths: "/home/navneet/"  # Change this to your target directory
         patterns: 
           #- "^.*?\\.(xml|json|csv)$"
-          - "^.*?\\.(csv)$"
+          - "^.*?\\.({{ item }})$"
         recurse: yes
         use_regex: yes
         read_whole_file: false
         depth: 2
       register: found_files
-
+      with_items:
+        - csv
+        - json
+        - xml
     - name: Display found files
       debug:
         msg: "{{ found_files.files | map(attribute='path') | list |length }}"
