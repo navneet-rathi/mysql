@@ -18,6 +18,18 @@
         - csv
         - json
         - xml
-    - name: Display found files
+        
+    - name: Display found files - csv
       debug:
-        msg: "{{ found_files.files | map(attribute='path') | list |length }}"
+        msg: "{{ found_files.results[0].files | map(attribute='path') | list }}" 
+          # | map(attribute='path') | list |length }}"
+
+    - name: Display found files - json
+      debug:
+        msg: "{{ found_files.results[1].files | map(attribute='path') | list }}"
+          # | map(attribute='path') | list |length }}"
+
+    - name: Display found files - xml
+      debug:
+        msg: "{{ found_files.results[2].files | map(attribute='path') | list }}"
+          # | map(attribute='path') | list |length }}"
