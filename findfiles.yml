@@ -12,7 +12,7 @@
           - "*.csv"
         recurse: yes
         read_whole_file: false
-        depth: 1
+        depth: 2
       register: found_files
 
     - name: Display found files
