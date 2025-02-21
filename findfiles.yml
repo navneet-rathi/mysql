@@ -6,8 +6,13 @@
     - name: Find files with specific extensions
       find:
         paths: "/home/navneet/"  # Change this to your target directory
-        patterns: "*.json,*.xml,*.csv"
-        recurse: yes  
+        patterns: 
+          - "*.json"
+          - "*.xml"
+          - "*.csv"
+        recurse: yes
+        read_whole_file: false
+        limit: 1
       register: found_files
 
     - name: Display found files
