@@ -7,7 +7,7 @@
       find:
         paths: "/home/navneet/"  # Change this to your target directory
         patterns: 
-          - "^.*?\\.(xml|json|csv)$"
+          - "^.*?\\.(xml)$"
         recurse: yes
         use_regex: yes
         read_whole_file: false
