@@ -5,7 +5,7 @@
   tasks:
     - name: Find files with specific extensions
       find:
-        paths: "/home/navneet/"  # Change this to your target directory
+        paths: "/home/leena/"  # Change this to your target directory
         patterns: 
           #- "^.*?\\.(xml|json|csv)$"
           - "^.*?\\.({{ item }})$"
@@ -13,12 +13,13 @@
         use_regex: yes
         read_whole_file: false
         depth: 2
+        get_checksum: false
       register: found_files
       with_items:
         - csv
         - json
         - xml
-        
+
     - name: Display found files - csv
       debug:
         msg: "{{ found_files.results[0].files | map(attribute='path') | list }}" 
