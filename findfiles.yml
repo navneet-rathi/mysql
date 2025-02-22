@@ -22,15 +22,18 @@
 
     - name: Display found files - csv
       debug:
-        msg: "the Totle count is {{ found_files.results[0].files | map(attribute='path') | list | length}} and path are {{ found_files.results[0].files | map(attribute='path') | list }}" 
+        msg: "the Totle count is {{ found_files.results[0].files | map(attribute='path') | list | length}}"
+        # and path are {{ found_files.results[0].files | map(attribute='path') | list }}" 
           # | map(attribute='path') | list |length }}"
 
     - name: Display found files - json
       debug:
-        msg: "the Totle count is {{ found_files.results[1].files | map(attribute='path') | list | length}} and path are {{ found_files.results[1].files | map(attribute='path') | list }}"
+        msg: "the Totle count is {{ found_files.results[1].files | map(attribute='path') | list | length}}"
+        # and path are {{ found_files.results[1].files | map(attribute='path') | list }}"
           # | map(attribute='path') | list |length }}"
 
     - name: Display found files - xml
       debug:
-        msg: "the Totle count is {{ found_files.results[2].files | map(attribute='path') | list | length}} and path are {{ found_files.results[2].files | map(attribute='path') | list }}"
+        msg: "the Totle count is {{ found_files.results[2].files | map(attribute='path') | list | length}}"
+        # and path are {{ found_files.results[2].files | map(attribute='path') | list }}"
           # | map(attribute='path') | list |length }}"
