@@ -5,7 +5,7 @@
   tasks:
     - name: Find files with specific extensions
       find:
-        paths: "/home/leena/"  # Change this to your target directory
+        paths: "/home/navneet/"  # Change this to your target directory
         patterns: 
           #- "^.*?\\.(xml|json|csv)$"
           - "^.*?\\.({{ item }})$"
