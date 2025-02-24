@@ -37,3 +37,13 @@
         msg: "the Totle count is {{ found_files.results[2].files | map(attribute='path') | list | length}}"
         # and path are {{ found_files.results[2].files | map(attribute='path') | list }}"
           # | map(attribute='path') | list |length }}"
+          
+#- name: Add several users
+#  ansible.builtin.user:
+#    name: "{{ item.name }}"
+#    state: present
+#    groups: "{{ item.groups }}"
+#  loop:
+#    - { name: 'testuser1', groups: 'wheel' }
+#    - { name: 'testuser2', groups: 'root' }
+          
