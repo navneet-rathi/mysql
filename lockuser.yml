@@ -25,4 +25,4 @@
     - name: Lock inactive users (excluding system users)
       ansible.builtin.command: "usermod --lock {{ item }}"
       loop: "{{ inactive_users.stdout_lines }}"
-      when: item not in system_users.stdout_lines and item not in ["root", "admin", "nobody", "other_imp_user"]
+      when: item not in system_users.stdout_lines and item not in ["root", "nrathi", "nobody", "other_imp_user"]
