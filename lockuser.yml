@@ -1,6 +1,7 @@
 ---
 - name: Lock users who have not logged in the last 30 days (excluding system users)
   hosts: linux_servers
+  gather_facts: no
   become: yes
   tasks:
 
