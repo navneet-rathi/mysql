@@ -47,7 +47,7 @@
 
     - name: Create child directory in the backup path as required.
       ansible.builtin.win_file:
-        path: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{inventory_hostname}}\\{{ item.filename }}"
+        path: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{inventory_hostname}}\\{{ item.path | win_splitdrive | last }}\\{{ item.filename }}"
         state: directory
       loop: "{{ deploypath.files }}"
       loop_control:
@@ -61,7 +61,7 @@
       loop: "{{ deploypath.files }}"
       loop_control:
         label: "{{item.filename}}"  
-      when: "{{item.name}} not in ['deploy', 'deploy_1']"
+      when: "{{item.filename}} not in ['deploy', 'deploy_1']"
 
    # - name: get some details 
    #   ansible.builtin.debug:
