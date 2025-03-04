@@ -10,12 +10,12 @@
       set_fact:
         currentdate_: "{{ '%d-%m-%Y' | strftime(ansible_date_time.epoch) }}"
 
-    - name: Display current date
-      debug:
-        msg: "{{ currentdate_ }}"  
+    - name: Display current date to start Backup process.
+      ansible.builtin.debug:
+        msg: "We are starting backup on {{ currentdate_ }}"  
     
-    - name: get the directory in the deploy path
-      win_find:
+    - name: Get the directory in the deploy path
+      ansible.windows.win_find:
         paths: "{{base_path}}"  
         #patterns: "*.out"
         recurse: yes
@@ -24,7 +24,7 @@
       register: deploypath
 
     - name: get the deployment path
-      debug:
+      ansible.builtin.debug:
         msg: "{{ deploypath.files | map(attribute='filename') | list  }}" 
 
     - name: Check if backup Directory Exists
@@ -54,7 +54,7 @@
         label: "{{item.filename}}"
 
     - name: copy directory's from source directory to destinations
-      win_copy:
+      anisble.windows.win_copy:
         remote_src: true 
         src: "{{ item.path }}//"
         dest: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{ item.filename }}"
