@@ -54,7 +54,7 @@
         label: "{{item.filename}}"
 
     - name: copy directory's from source directory to destinations
-      anisble.windows.win_copy:
+      ansible.windows.win_copy:
         remote_src: true 
         src: "{{ item.path }}//"
         dest: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{inventory_hostname}}\\{{ item.filename }}"
