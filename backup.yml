@@ -39,7 +39,7 @@
 
     - name: create child directory in the backup path
       ansible.builtin.win_file:
-        path: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{ item }}"
+        path: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{ item.filename }}"
         state: directory
       loop: 
-        - "{{ deploypath.files | map(attribute='filename') }}"
+        - "{{ deploypath.files }}"
