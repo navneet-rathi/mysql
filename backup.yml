@@ -42,4 +42,4 @@
         path: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{ item }}"
         state: directory
       loop: 
-        - "{{ deploypath.files | map(attribute='filename') | list  }}"
+        - "{{ deploypath.files | map(attribute='filename') }}"
