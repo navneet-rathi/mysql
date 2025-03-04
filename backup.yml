@@ -19,7 +19,7 @@
         paths: "{{base_path}}"  
         #patterns: "deploy*"
         recurse: yes
-        depth: 1
+        depth: 2
         file_type: directory  
       register: deploypath
 
@@ -57,7 +57,7 @@
       ansible.windows.win_copy:
         remote_src: true 
         src: "{{ item.path }}//"
-        dest: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{inventory_hostname}}\\{{ item.filename }}"
+        dest: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{inventory_hostname}}\\{{item.path | win_dirname | win_basename }}\\{{ item.filename }}"
       loop: "{{ deploypath.files }}"
       loop_control:
         label: "{{item.filename}}"  
