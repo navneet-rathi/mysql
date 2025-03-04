@@ -19,6 +19,7 @@
         paths: "{{base_path}}"  
         #patterns: "*.out"
         recurse: yes
+        depth: 1
         file_type: directory  
       register: deploypath
 
@@ -43,7 +44,7 @@
       loop: "{{ deploypath.files }}"   
       loop_control:
         label: "{{item.filename}}"
-        
+
     - name: create child directory in the backup path
       ansible.builtin.win_file:
         path: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{ item.filename }}"
@@ -51,3 +52,4 @@
       loop: "{{ deploypath.files }}"
       loop_control:
         label: "{{item.filename}}"
+
