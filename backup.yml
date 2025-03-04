@@ -64,7 +64,7 @@
 
     - name: get some details 
       ansible.builtin.debug:
-        msg: "{{ item.path | win_dirname }} && {{ item.path | win_splitdrive | last }} && {{item.path |splitext }}"
+        msg: "{{ item.path | win_dirname }} && {{ item.path | win_splitdrive | last }} && {{item.path | dirname | basename }}"
       loop: "{{ deploypath.files }}"
       loop_control:
         label: "{{item.filename}}"       
