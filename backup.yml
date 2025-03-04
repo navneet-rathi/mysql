@@ -36,3 +36,10 @@
         path: "{{ backup_dir }}"
         state: directory
       when: not dir_status.stat.exists
+
+    - name: create child directory in the backup path
+      ansible.builtin.win_file:
+        path: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{ item }}"
+        state: directory
+      loop: 
+        - "{{ deploypath.files | map(attribute='filename') | list  }}"
