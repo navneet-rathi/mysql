@@ -56,7 +56,7 @@
     - name: copy directory's from source directory to destinations
       win_copy:
         remote_src: true 
-        src: "{{ item.path }}"
+        src: "{{ item.path }}//"
         dest: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{ item.filename }}"
       loop: "{{ deploypath.files }}"
       loop_control:
