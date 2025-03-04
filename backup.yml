@@ -23,7 +23,7 @@
         file_type: directory  
       register: deploypath
 
-    - name: get the deployment path
+    - name: Get the deployment path
       ansible.builtin.debug:
         msg: "{{ deploypath.files | map(attribute='filename') | list  }}" 
 
