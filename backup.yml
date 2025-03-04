@@ -53,3 +53,11 @@
       loop_control:
         label: "{{item.filename}}"
 
+    - name: copy directory's from source directory to destinations
+      win_copy:
+         src: "{{ item.path }}"
+         dest: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{ item.filename }}"
+      loop: "{{ deploypath.files }}"
+      loop_control:
+        label: "{{item.filename}}"  
+
