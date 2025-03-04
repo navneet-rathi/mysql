@@ -1,7 +1,7 @@
 ---
 - name: ansible script to take backups
   hosts: all
-  gather_facts: false
+  gather_facts: true
   vars:
     base_path: "E:\\deploy"
     backup_dir: "E:\\Backup"
