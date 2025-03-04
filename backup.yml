@@ -3,7 +3,7 @@
   hosts: all
   gather_subset: ['date_time']
   vars:
-    base_path: "E:\\deploy"
+    base_path: "E:\\ansible\\remote\\deploy"
     backup_dir: "E:\\Backup"
   tasks:
     - name: Format the date
