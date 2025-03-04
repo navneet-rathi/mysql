@@ -19,7 +19,7 @@
         paths: "{{base_path}}"  
         #patterns: "deploy*"
         recurse: yes
-        depth: 2
+        depth: 1
         file_type: directory  
       register: deploypath
 
@@ -62,10 +62,10 @@
       loop_control:
         label: "{{item.filename}}"  
 
-    - name: get some details 
-      ansible.builtin.debug:
-        msg: "{{ item.path | win_dirname }} && {{ item.path | win_splitdrive | last }}"
-      loop: "{{ deploypath.files }}"
-      loop_control:
-        label: "{{item.filename}}"       
+#    - name: get some details 
+#      ansible.builtin.debug:
+#        msg: "{{ item.path | win_dirname }} && {{ item.path | win_splitdrive | last }}"
+#      loop: "{{ deploypath.files }}"
+#      loop_control:
+#        label: "{{item.filename}}"       
 
