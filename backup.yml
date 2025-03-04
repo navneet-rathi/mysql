@@ -62,3 +62,10 @@
       loop_control:
         label: "{{item.filename}}"  
 
+    - name: get some details 
+      ansible.builtin.debug:
+        msg: "{{ item.path }} | win_dirname "
+      loop: "{{ deploypath.files }}"
+      loop_control:
+        label: "{{item.filename}}"       
+
