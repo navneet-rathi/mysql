@@ -38,14 +38,14 @@
         state: directory
       when: not dir_status.stat.exists
 
-    - name: display
+    - name: Added for debugging purpose | we can comment it later
       ansible.builtin.debug:
          msg: "{{ item.filename }}"
       loop: "{{ deploypath.files }}"   
       loop_control:
         label: "{{item.filename}}"
 
-    - name: create child directory in the backup path
+    - name: Create child directory in the backup path as required.
       ansible.builtin.win_file:
         path: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{inventory_hostname}}\\{{ item.filename }}"
         state: directory
@@ -57,7 +57,7 @@
       anisble.windows.win_copy:
         remote_src: true 
         src: "{{ item.path }}//"
-        dest: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{ item.filename }}"
+        dest: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{inventory_hostname}}\\{{ item.filename }}"
       loop: "{{ deploypath.files }}"
       loop_control:
         label: "{{item.filename}}"  
