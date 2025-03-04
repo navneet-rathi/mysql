@@ -47,7 +47,7 @@
 
     - name: Create child directory in the backup path as required.
       ansible.builtin.win_file:
-        path: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{inventory_hostname}}\\{{ item.path | win_splitdrive | last }}\\{{ item.filename }}"
+        path: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{inventory_hostname}}\\{{ item.path | win_splitdrive | last }}"
         state: directory
       loop: "{{ deploypath.files }}"
       loop_control:
@@ -57,7 +57,7 @@
       ansible.windows.win_copy:
         remote_src: true 
         src: "{{ item.path }}//"
-        dest: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{inventory_hostname}}\\{{ item.path | win_splitdrive | last }}\\{{ item.filename }}"
+        dest: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{inventory_hostname}}\\{{ item.path | win_splitdrive | last }}"
       loop: "{{ deploypath.files }}"
       loop_control:
         label: "{{item.filename}}"  
