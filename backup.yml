@@ -61,7 +61,7 @@
       loop: "{{ deploypath.files }}"
       loop_control:
         label: "{{item.filename}}"  
-      when: {{ item.filename }} not in ["deploy", "deploy_1"]
+      when:  item.filename not in ["deploy", "deploy_1"]
 
    # - name: get some details 
    #   ansible.builtin.debug:
