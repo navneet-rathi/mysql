@@ -15,4 +15,4 @@
 
     - name: get the deployment path
       debug:
-        msg: "{{ deploypath }}" 
+        msg: "{{ deploypath.files | map(attribute='filename') | list  }}" 
