@@ -39,7 +39,7 @@
 
     - name: display
       ansible.builtin.debug:
-         msg: "{{ item }}"
+         msg: "{{ item.filename }}"
       loop: "{{ deploypath.files }}"   
 
 #    - name: create child directory in the backup path
