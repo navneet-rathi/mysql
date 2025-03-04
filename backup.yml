@@ -4,7 +4,16 @@
   gather_facts: false
   vars:
     base_path: "E:\\deploy"
+    backup_dir: "E:\\Backup"
   tasks:
+    - name: Format the date
+      set_fact:
+        currentdate_: "{{ '%d-%m-%Y' | strftime(ansible_date_time.epoch) }}"
+
+    - name: Display current date
+      debug:
+        msg: "{{ currentdate_ }}"  
+    
     - name: get the directory in the deploy path
       win_find:
         paths: "{{base_path}}"  
@@ -16,3 +25,14 @@
     - name: get the deployment path
       debug:
         msg: "{{ deploypath.files | map(attribute='filename') | list  }}" 
+
+    - name: Check if backup Directory Exists
+      ansible.builtin.win_stat:
+        path: "{{ backup_dir }}"
+      register: dir_status
+
+    - name: Create backup Directory if Not Exists
+      ansible.builtin.win_file:
+        path: "{{ backup_dir }}"
+        state: directory
+      when: not dir_status.stat.exists
