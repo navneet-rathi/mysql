@@ -57,15 +57,16 @@
       ansible.windows.win_copy:
         remote_src: true 
         src: "{{ item.path }}//"
-        dest: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{inventory_hostname}}\\{{item.path | win_dirname | win_basename }}\\{{ item.filename }}"
+        dest: "{{ backup_dir }}\\BKP_{{ currentdate_ }}\\{{inventory_hostname}}\\{{ item.path | win_splitdrive | last }}\\{{ item.filename }}"
       loop: "{{ deploypath.files }}"
       loop_control:
         label: "{{item.filename}}"  
+      when: "{{item.name}} not in ['deploy', 'deploy_1']"
 
-    - name: get some details 
-      ansible.builtin.debug:
-        msg: "{{ item.path | win_dirname }} && {{ item.path | win_splitdrive | last }} && {{item.path | win_dirname | win_basename }}"
-      loop: "{{ deploypath.files }}"
-      loop_control:
-        label: "{{item.filename}}"       
+   # - name: get some details 
+   #   ansible.builtin.debug:
+   #     msg: "{{ item.path | win_dirname }} && {{ item.path | win_splitdrive | last }} && {{item.path | win_dirname | win_basename }}"
+   #   loop: "{{ deploypath.files }}"
+   #   loop_control:
+   #     label: "{{item.filename}}"       
 
