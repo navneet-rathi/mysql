@@ -17,7 +17,7 @@
     - name: Get the directory in the deploy path
       ansible.windows.win_find:
         paths: "{{base_path}}"  
-        patterns: "deploy*"
+        #patterns: "deploy*"
         recurse: yes
         depth: 2
         file_type: directory  
