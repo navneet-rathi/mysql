@@ -38,9 +38,9 @@
         state: directory
       when: not dir_status.stat.exists
 
-    - name: Added for debugging purpose | we can comment it later
+    - name: Added for debugging purpose (who is the father)| we can comment it later 
       ansible.builtin.debug:
-         msg: "{{ item.filename }}"
+         msg: "{{ item.path | win_splitdrive | last }}"
       loop: "{{ deploypath.files }}"   
       loop_control:
         label: "{{item.filename}}"
