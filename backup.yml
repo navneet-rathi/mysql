@@ -62,7 +62,7 @@
       loop_control:
         label: "{{item.filename}}"  
       when:  item.filename not in ["deploy", "deploy_1"]
-
+### target path : E:\Backup\BKP_04-03-2025\Leena-Win\ansible\remote
    # - name: get some details 
    #   ansible.builtin.debug:
    #     msg: "{{ item.path | win_dirname }} && {{ item.path | win_splitdrive | last }} && {{item.path | win_dirname | win_basename }}"
