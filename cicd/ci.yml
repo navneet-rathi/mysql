@@ -3,7 +3,7 @@
   hosts: all
   become: yes
   vars:
-    git_repo_url: "https://github.com/ArunMagi/sample-java-maven-application/tree/main"
+    git_repo_url: "https://github.com/ArunMagi/sample-java-maven-application.git"
     git_branch: "main"
     code_checkout_path: "/opt/app"
     build_command: "mvn clean package"   # Replace with mvn clean install, npm install, etc.
