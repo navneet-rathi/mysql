@@ -3,7 +3,7 @@
   hosts: all
   become: yes
   vars:
-    git_repo_url: "https://github.com/jenkins-docs/simple-java-maven-app.git"
+    git_repo_url: "https://github.com/navneet-rathi/simple-java-maven-app.git"
     git_branch: "main"
     code_checkout_path: "/opt/app"
     build_command: "mvn clean package"   # Replace with mvn clean install, npm install, etc.
