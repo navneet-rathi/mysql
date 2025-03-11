@@ -9,6 +9,22 @@
     build_command: "mvn clean package"   # Replace with mvn clean install, npm install, etc.
 
   tasks:
+  ## added patch to fix the dns
+    - name: Clear existing content in /etc/resolv.conf
+      copy:
+        content: ""
+        dest: /etc/resolv.conf
+        force: yes
+
+    - name: Add DNS nameservers to /etc/resolv.conf
+      lineinfile:
+        path: /etc/resolv.conf
+        line: "{{ item }}"
+        insertafter: EOF
+        state: present
+      loop:
+        - "nameserver 192.168.1.1"
+        - "nameserver 8.8.8.8"
 
     - name: Ensure required packages are installed
       package:
