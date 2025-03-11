@@ -1,0 +1,31 @@
+---
+- name: Checkout and Build Code
+  hosts: all
+  become: yes
+  vars:
+    git_repo_url: "https://github.com/ArunMagi/sample-java-maven-application/tree/main"
+    git_branch: "main"
+    code_checkout_path: "/opt/app"
+    build_command: "mvn clean package"   # Replace with mvn clean install, npm install, etc.
+
+  tasks:
+
+    - name: Ensure required packages are installed
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - git
+        - maven  # Add maven, nodejs, etc., depending on your stack
+
+    - name: Clone repository
+      git:
+        repo: "{{ git_repo_url }}"
+        dest: "{{ code_checkout_path }}"
+        version: "{{ git_branch }}"
+        force: yes
+
+    - name: Build the code
+      command: "{{ build_command }}"
+      args:
+        chdir: "{{ code_checkout_path }}"
