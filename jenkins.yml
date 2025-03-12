@@ -15,7 +15,7 @@
 
     - name: Trigger Jenkins job
       community.general.jenkins_build:
-        url: "http://192.168.1.7:8080"
+        url: "http://192.168.64.43:8080"
         user: "admin"
         token: "11977f02c5c2c6b52a795c03d365fc485c"
         name: "Sample"
@@ -29,7 +29,7 @@
     - name: Get information about a jenkins build using basic authentication
       community.general.jenkins_build_info:
         build_number: "{{ result.build_info.number }}"
-        url: "http://192.168.1.7:8080"
+        url: "http://192.168.64.43:8080"
         user: "admin"
         token: "11977f02c5c2c6b52a795c03d365fc485c"
         name: "Sample"
