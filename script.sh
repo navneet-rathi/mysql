@@ -74,7 +74,8 @@ while true; do
 
                 case $net_choice in
                     1) ip a 
-                        sleep 3 
+                       echo "enableing sleep"
+                       sleep 3 
                        break ;;
                     2) ping -c 4 8.8.8.8
 
