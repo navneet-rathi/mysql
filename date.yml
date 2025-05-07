@@ -12,7 +12,7 @@
         currentdate_: "{{ '%d-%m-%Y' | strftime(ansible_date_time.epoch) }}"
         currentdate_hypen: "{{ '%d-%m-%Y' | strftime(ansible_date_time.epoch) }}"
         currentdate_fullmonth: "{{ '%d-%B-%Y' | strftime(ansible_date_time.epoch) }}"
-        currentdate_shortmonth: "{{ '%d-%B-%Y' | strftime(ansible_date_time.epoch) }}"
+        currentdate_shortmonth: "{{ '%d-%b-%Y' | strftime(ansible_date_time.epoch) }}"
 
 #    - name: Display the formatted date
 #      debug:
@@ -31,7 +31,7 @@
       register: yesterday_fullm
 
     - name: get yesterdays date shortmonth
-      ansible.builtin.shell: "date -d 'yesterday 13:00' '+%d-%b-%Y'"
+      ansible.builtin.shell: "date -d 'yesterday 13:00' '+%d_%b_%Y'"
       register: yesterday_shortm    
 
     - name: Get yesterday's date using timestamp subtraction
